@@ -1,148 +1,41 @@
-body {
-  background-color: #FFFDF2;
-  width: 100vw;
-  height: 100vh;
+.container {
+  display: flex; /* Aktiverer flexbox for at arrangere elementerne */
+}
+
+.vertCard {
+  width: 33%; /* Bredden på det vertikale kort (kan justeres) */
+  height: 200px; /* Højde på det vertikale kort */
+  background-color: #FAF0E6; /* Baggrundsfarve til vertCard */
+  margin-right: 20px; /* Plads mellem kortet og rækkerne */
   
-  
 }
 
-/* overskrift h1 design */
-h1{
-font-style: bold;
-font-size: 60px;
-}
-
-body {
-  background-color: #FFFDF2; /* Lys beige baggrund */
-  color: #333333; /* Mørk grå tekst */
-}
-
-a {
-  color: #007BFF; /* Lys blå links */
-}
-
-h1, h2, h3 {
-  color: #0056b3; /* Dybere blå til overskrifter */
-}
-
-.button {
-  background-color: #FF6F61; /* Koralfarvet knapper */
-  color: white; /* Hvid tekst på knapper */
-}
-
-.section {
-  background-color: #FAF0E6; /* Lysere beige til sektioner */
-}
-
-
-pre{
-  background-color: lightgray;
-}
-
-
-.boxFloatRighe{
-float: right;
-background-color: rgb(200,100,100);
-width: 40%;
-height: 40%;
-overflow: hidden;
-font-size: 40;
-}
-
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
+.parrentHoriCard {
   width: 100%;
-  border-radius: 2vh;
-
+  display: flex; /* Aktiverer flexbox for rækkerne */
+  flex-direction: column; /* Arrangerer rækkerne i en kolonne */
 }
 
-.parent {
-  text-align: center;
+.row {
+  height: 100px; /* Halv højde af vertCard */
+  width: 100%;
+  display: flex; /* Aktiverer flexbox for at arrangere indholdet i rækkerne */
+  align-items: center; /* Centrerer indholdet vertikalt */
+  margin-bottom: 10px; /* Plads mellem rækkerne */
 }
 
-.child {
-  display: inline-block;
+.card1 {
+  background-color: #FF6F61; /* Baggrundsfarve til kortene */
+  flex: 1; /* Får kortene til at fylde rækkerne */
+  padding: 10px; /* Indvendig padding */
+  color: white; /* Tekstfarve */
+  text-align: center; /* Centrerer teksten */
 }
-
-
-/* for at lave to divs på en række */
-#parent1 {
-  border: 1px solid black;
-  margin: 1rem;
-  padding: 2rem 2rem;
-
-  height: 80vh;
-  width: 90vw;
-  align-self: center;
-
-}
-#who {
-  background-color: #FAF0E6;
-
-  height: 90%;
-  width: 45%;
-  
-  
-  border: 1px solid red;
-  border-radius: 1rem;
-
-  padding: 1rem 1rem 1rem 1rem;
-  vertical-align: middle;
-  text-align: left;
-  margin: 0.4rem;
-}
-
-
-#siteList {
-  border: 1px solid purple;
-  
-  text-align: center;
-  align-self: center;
-  vertical-align: middle;
-  width: 90vw;
-  height: 10vh;
-  vertical-align: middle;
-
-  display: flex;
-  display: flex; /* Aktiverer flexbox */
-  align-items: center; /* Centrerer vertikalt */
-  vertical-align: middle;
-  align-self: center;
-
-}
-#siteList {
-  width: 95%; /* eller en anden værdi */
-  margin: 0 auto; /* Dette centrerer div'en horisontalt */
-  border: 1px solid purple; /* Valgfrit, for at se div'ens grænse */
-  text-align: center; /* Centrerer indholdet i div'en */
-}
-
-.parent {
-  display: flex; /* Aktiverer flexbox */
-  justify-content: center; /* Centrerer indholdet horisontalt */
-  align-items: center; /* Centrerer indholdet vertikalt (valgfrit) */
-  height: 100vh; /* Sætter højden til 100% af viewporten */
-}
-
-.horizontal-list {
-  list-style-type: none; /* Fjerner punkterne fra listen */
-  padding: 0; /* Fjerner padding */
-  margin: 0; /* Fjerner margin */
+.card2 {
+  width: 50%;
   
 }
 
-.horizontal-list li {
-  display: inline; /* Gør listeelementerne inline for vandret layout */
-  margin-right: 20px; /* Tilføjer lidt plads mellem elementerne */
-  
-}
-
-.horizontal-list li:hover {
-  background-color: #FF6F61;
-}
-.horizontal-list li:active {
-  background-color: #fe4f3f;
+div {
+  border: 0.5px solid greenyellow;
 }
