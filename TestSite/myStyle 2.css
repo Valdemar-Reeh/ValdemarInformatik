@@ -1,0 +1,105 @@
+body {
+  background-color: #FFFDF2;
+}
+
+/* overskrift h1 design */
+h1{
+font-style: bold;
+font-size: 60px;
+}
+
+body {
+  background-color: #FFFDF2; /* Lys beige baggrund */
+  color: #333333; /* Mørk grå tekst */
+}
+
+a {
+  color: #007BFF; /* Lys blå links */
+}
+
+h1, h2, h3 {
+  color: #0056b3; /* Dybere blå til overskrifter */
+}
+
+.button {
+  background-color: #FF6F61; /* Koralfarvet knapper */
+  color: white; /* Hvid tekst på knapper */
+}
+
+.section {
+  background-color: #FAF0E6; /* Lysere beige til sektioner */
+}
+
+
+pre{
+  background-color: lightgray;
+}
+
+
+.boxFloatRighe{
+float: right;
+background-color: rgb(200,100,100);
+width: 40%;
+height: 40%;
+overflow: hidden;
+font-size: 40;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  width: 100%;
+  border-radius: 2vh;
+
+}
+
+/* for at lave to divs på en række */
+.parent {
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+
+  height: 80vh;
+  width: 90vw;
+}
+.child {
+  background-color: #FAF0E6;
+
+  height: 90%;
+  width: 45%;
+  
+  display: inline-block;
+  border: 1px solid red;
+  border-radius: 1rem;
+
+  padding: 1rem 1rem 1rem 1rem;
+  vertical-align: middle;
+  text-align: left;
+}
+
+
+#siteList {
+  border: 1px solid purple;
+  
+  text-align: center;
+  align-self: center;
+  width: 90vw;
+  height: 5vh;
+}
+
+
+
+.horizontal-list {
+  text-align: left;
+  list-style-type: none; /* Fjerner punkterne i listen */
+  padding: 0; /* Fjerner standard padding */
+  margin: 0; /* Fjerner standard margin */
+}
+
+.horizontal-list li {
+  display: inline; /* Gør listeelementerne inline for vandret layout */
+  margin-right: 20px; /* Tilføjer lidt plads mellem elementerne */
+}
