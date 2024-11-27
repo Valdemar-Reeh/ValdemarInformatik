@@ -1,0 +1,11 @@
+
+
+.cardExtra {
+    width: 33%; 
+    height: 100%;
+    cursor: pointer;
+}
+
+.cardExtra:hover {
+    background-color: rgb(230, 230, 230);
+}
