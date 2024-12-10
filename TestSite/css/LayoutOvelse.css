@@ -9,3 +9,65 @@
 .cardExtra:hover {
     background-color: rgb(230, 230, 230);
 }
+
+.preCode {
+    background-color: darkgray;
+    width: 100%;
+    height: 300px;
+    margin: 30px;
+    border-radius: 10px;
+}
+
+.codeCard {
+    width: 80%; 
+    height: 650px; 
+    background-color: #1e1e1e;
+    margin: auto;
+}
+
+.cardSection {
+    width: 100%;
+}
+
+span {
+    --HTML: #6089b4;
+    --RULESET: #d0b344;
+    --VALUE: #9aa83a;
+    --CSSProporties: #676867;
+    --CSSEnteties: #c7444a;
+    --CSSrgb: #9873a2;
+    --CSSrgbPara: #da70d6;
+    --CSShex: #8080ff;
+}
+
+.HTML {
+    color: var(--HTML);
+}
+
+.RULESET {
+    color: var(--RULESET);
+}
+
+.VALUE {
+    color: var(--VALUE);
+}
+
+.CSSProporties {
+    color: var(--CSSProporties);
+}
+
+.CSSEnteties {
+    color: var(--CSSEnteties);
+}
+
+.CSSrgb {
+    color: var(--CSSrgb);
+}
+
+.CSSrgbPara {
+    color: var(--CSSrgbPara);
+}
+
+.CSShex {
+    color: var(--CSShex);
+}
