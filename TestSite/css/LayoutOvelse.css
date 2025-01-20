@@ -71,3 +71,14 @@ span {
 .CSShex {
     color: var(--CSShex);
 }
+
+.codeSpanForklar {
+    color: orange;
+    background-color: rgb(240, 240, 240);
+    padding: 2px;
+}
+
+#codehtmlForklar {
+    padding-left: 0;
+    padding-right: 0;
+}
