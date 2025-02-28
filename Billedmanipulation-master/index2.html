@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js example</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+    <script src="Arthur-Timo-Valdemar/fileHandlingTest.js"></script>
+  </head>
+
+<body>
+
+  <!-- File Input for Image Upload -->
+  <!-- <input type="file" id="fileInput" accept="image/*" /> -->
+  <br><br>
+
+  <!-- Image Preview -->
+  <img id="imagePreview" style="max-width: 500px; display: none;" alt="Image Preview" />
+
+  <script>
+    /*
+    const fileInput = document.getElementById('fileInput');
+    const imagePreview = document.getElementById('imagePreview');
+
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0]; // Get the uploaded file
+
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          imagePreview.src = e.target.result; // Set image source
+          imagePreview.style.display = 'block'; // Show image
+        };
+
+        reader.readAsDataURL(file); // Convert image to base64
+      } else {
+        alert('Please select a valid image file.');
+      }
+    });
+    */
+  </script>
+
+</body>
+
+</html>
+
+
+</html>

@@ -1,0 +1,531 @@
+<h1 id="foldning">Foldning</h1>
+<p>Mads Peter Steenstrup, 10. marts 2024</p>
+<h2 id="grundlæggende-koncept">Grundlæggende Koncept</h2>
+<p>Foldning er en matematisk metode til at kombinere to signaler for at
+danne et tredje signal. Det er en matematisk operation, der kombinerer
+to funktioner eller signaler for at producere et tredje. På engelsk
+hedder det convolution. Foldning har mange anvendelsesmuligheder inden
+for statistik, signalbehandling og billedbehandling.</p>
+<p><strong>Intuition:</strong> Foldning viser hvor meget overlap to
+funktioner har når man kører den ene over den anden. I figur 1 bliver
+det lilla rektangel kørt forbi den store røde. Overlappet vises som den
+grønne graf. Hvis hele det lille er inde i det røde er der maksimalt
+overlap, mens det er nul hvis de slet ikke overlapper. På den grønne
+kurve kan man se at den overlappere mere og mere ind til maksimum. Det
+vises bedst som en gif, se her <a
+href="https://mathworld.wolfram.com/images/gifs/convrect.gif">Wolfram
+Mathworld</a>.</p>
+<figure>
+<img src="billeder/convolution1.png"
+alt="Foldning, Wolfram Mathworld LINK " />
+<figcaption aria-hidden="true">Foldning, Wolfram Mathworld <a
+href="https://mathworld.wolfram.com/Convolution.html">LINK</a>
+</figcaption>
+</figure>
+<p>Hvis <span class="math inline"><em>f</em></span> og <span
+class="math inline"><em>g</em></span> er to funktioner, skrives deres
+foldning som <span
+class="math inline"><em>f</em> * <em>g</em></span>.</p>
+<h3 id="definition---kontinuert-foldning">Definition - Kontinuert
+foldning</h3>
+<p>Givet to kontinuerte funktioner <span
+class="math inline"><em>f</em>(<em>t</em>)</span> og <span
+class="math inline"><em>g</em>(<em>t</em>)</span> betegnes foldningen
+typisk med asterisk-symbolet <span class="math inline">*</span>, altså
+<span
+class="math inline"><em>f</em>(<em>t</em>) * <em>g</em>(<em>t</em>)</span>.
+Dette udregnes med integralet af produktet af de to funktioner, <span
+class="math display">(<em>f</em>*<em>g</em>)(<em>t</em>) = ∫<sub>−∞</sub><sup>∞</sup><em>f</em>(<em>x</em>)<em>g</em>(<em>t</em>−<em>x</em>)<em>d</em><em>x</em>.</span></p>
+<p>Lad os kigge på funktionen <span
+class="math inline"><em>g</em>(<em>t</em>−<em>x</em>)</span> hvor <span
+class="math inline"><em>x</em></span> er den uafhængige variabel mens
+<span class="math inline"><em>t</em></span> giver forskydningen langs
+x-aksen. Hvis vi sætter <span class="math inline"><em>t</em> = 0</span>
+ses det at funktionen bliver <span
+class="math inline"><em>g</em>(−<em>x</em>)</span>. Dette svarer til at
+funktionen <span class="math inline"><em>g</em></span> er spejlet i
+y-aksen.</p>
+<h3 id="øvelse">Øvelse</h3>
+<ul>
+<li>Undersøg om funktionen gauss-funktionen <span
+class="math inline"><em>g</em>(<em>x</em>) = <em>e</em><sup>−(<em>t</em>−<em>x</em>)<sup>2</sup></sup></span>
+forskydes til højre eller venstre når <span
+class="math inline"><em>t</em></span> bliver større ved brug af et
+computerprogram.</li>
+<li>Prøv med en anden selvvalgt funktion.</li>
+<li>Overvej hvorfor funktionen netop bliver forskudt den vej.</li>
+</ul>
+<h3 id="matematiske-egenskaber-ved-foldning.">Matematiske egenskaber ved
+foldning.</h3>
+<p>Der gælder samme regler for foldning som for addition, multiplikation
+og division. Foldning er,</p>
+<ul>
+<li>Distributiv.</li>
+<li>Associativ.</li>
+<li>Kommutativ.</li>
+</ul>
+<h3 id="distributiv-egenskab">Distributiv egenskab</h3>
+<p>Den distributive egenskab ved multiplikation siger at <span
+class="math inline"><em>x</em> ⋅ (<em>a</em>+<em>b</em>) = <em>x</em> ⋅ <em>a</em> + <em>x</em> ⋅ <em>b</em></span>.
+For en foldning vil det sige at <span
+class="math inline">(<em>f</em>*(<em>g</em>+<em>h</em>))(<em>t</em>) = (<em>f</em>*<em>g</em>+<em>f</em>*<em>h</em>)(<em>t</em>)</span>.</p>
+<h3 id="associative-egenskab">Associative egenskab</h3>
+<p>Den associative egenskab giver, at hvad man ganger førs ved
+multiplikation er ligegyldig da,<span
+class="math inline"><em>a</em> ⋅ (<em>b</em>⋅<em>c</em>) = (<em>a</em>⋅<em>b</em>) ⋅ <em>c</em></span>.
+Ved foldning giver det at <span
+class="math inline">(<em>f</em>*(<em>g</em>*<em>h</em>))(<em>t</em>) = ((<em>f</em>*<em>g</em>)*<em>h</em>)(<em>t</em>)</span></p>
+<h3 id="kummutative-egenskab">Kummutative egenskab</h3>
+<p>Den kommutative egenskab gør at rækkefølgen ved multiplikation er
+ligegyldig da, <span
+class="math inline"><em>a</em> ⋅ <em>b</em> = <em>b</em> ⋅ <em>a</em></span>.
+For en foldning gælder at <span
+class="math inline">(<em>f</em>*<em>g</em>)(<em>t</em>) = (<em>g</em>*<em>f</em>)(<em>t</em>)</span>
+hvilket skrevet med integralter giver <span
+class="math inline">∫<sub>−∞</sub><sup>∞</sup><em>f</em>(<em>x</em>)<em>g</em>(<em>t</em>−<em>x</em>)<em>d</em><em>x</em> = ∫<sub>−∞</sub><sup>∞</sup><em>f</em>(<em>t</em>−<em>x</em>)<em>g</em>(<em>x</em>)<em>d</em><em>x</em></span>.</p>
+<h3 id="øvelse-1">Øvelse</h3>
+<ul>
+<li>Vis at foldning er distributiv og associativ ved brug at
+integralregnereglerne.</li>
+<li>Vis at foldning er kommutativ ved at lave substitution, <span
+class="math inline"><em>x</em> = <em>t</em> − <em>x̃</em></span>. Overvej
+om det ændre integrationsgrænserne.</li>
+</ul>
+<h3 id="andre-definitioner">Andre definitioner</h3>
+<p>Foldningens mange anvendelsesmuligheder gør, at der er mange
+forskellige definitioner af en foldning. Vi skal vise at de forskellige
+definitioner kan udledes ud fra vores definition, med valg af funktionen
+<span class="math inline"><em>g</em>(<em>x</em>)</span>.</p>
+<p>Ved signalbehandling bruger man ofte definitionen <span
+class="math display">(<em>f</em>*<em>g</em>)(<em>t</em>) = ∫<sub>0</sub><sup>∞</sup><em>f</em>(<em>x</em>)<em>g</em>(<em>t</em>−<em>x</em>)<em>d</em><em>x</em></span>
+hvor <span class="math inline"><em>t</em> = 0</span> er der hvor
+signalet starter.</p>
+<h3 id="øvelse-2">Øvelse</h3>
+<p>Vis, ved at opdele integralet, at funktionen <span
+class="math display">$$ g(t-x)=   \left\{
+\begin{array}{ll}
+      0 &amp; x&lt;0 \\
+      h(x) &amp; x\geq 0
+\end{array}
+\right.  $$</span> medfører at <span
+class="math display">∫<sub>0</sub><sup>∞</sup><em>f</em>(<em>x</em>)<em>h</em>(<em>x</em>)<em>d</em><em>x</em> = ∫<sub>−∞</sub><sup>∞</sup><em>f</em>(<em>x</em>)<em>g</em>(<em>t</em>−<em>x</em>)<em>d</em><em>x</em></span></p>
+<p>Vi kan altså ved at indføre stykvise funktioner ændre
+integrationsgrænser. Dette kan være nyttigt hvis integralet for eksempel
+ikke konvergerer.</p>
+<h2 id="gennemsnit">Gennemsnit</h2>
+<p>Gennemsnit over et interval <span
+class="math inline"><em>a</em></span> kan laves med følgende funktion,
+<span class="math display">$$
+g(t-x)=   \left\{
+\begin{array}{ll}
+      \frac{1}{a} &amp; 0&lt;t\leq a \\
+      0 &amp; ellers.
+\end{array}
+\right.
+$$</span> Lad os udnytte at vi kan ændre integrationsgrænser til at
+omskrive udtrykket <span class="math display">$$
+(f*g)(t) = \int_{-\infty}^{\infty} f(x)g(x-t)dx  = \frac{1}{a}\int_0^a
+f(x)dx.
+$$</span> ## Øvelse * Beregn gennemsnittet at funktionen <span
+class="math inline"><em>f</em>(<em>x</em>) = sin (<em>x</em>)</span>
+over de tre intervaller <span
+class="math inline">[0;<em>π</em>], [<em>π</em>,2<em>π</em>], [0,2<em>π</em>]</span>.
+* Indtegn funktionen og de tre gennemsnit i samme koordinatsystem og
+tjek beregningerne. Som det ses behøver integralet ikke starte i <span
+class="math inline">0</span>, men kan som her starte i <span
+class="math inline"><em>π</em></span>. Gennemsnittet over intervallet
+<span class="math inline"><em>a</em></span> til <span
+class="math inline"><em>b</em></span> kan skrives som <span
+class="math display">$$
+\overline{f(x)} = \frac{1}{b-a}\int_a^b f(x) dx
+$$</span></p>
+<h3 id="glidene-gennemsnit">Glidene gennemsnit</h3>
+<p>Glidende gennemsnit er gennemsnit over intervallet <span
+class="math inline"><em>M</em> = <em>b</em> − <em>a</em></span> som
+forskydes langs x-aksen. Det bruges ofte i databehandling for at fjerne
+støj. Ved at tage gennemsnittet bliver den hurtigt fluktuerende støj
+fjernet. Det kan også være brugbart ved tidsserier hvor man eks. vil
+fjerne sæsonvariation. Det ses i figur 2 hvor mængden af CO2 i
+atmosfæren svinger med årstiden på grund af løvfald på den nordlige
+halvkugle. Ved et glidende gennemsnit over et år, laves den sorte kurve
+som viser den voksende mængde i atmosfæren.</p>
+<figure>
+<img src="billeder/atmosphericCO2.png"
+alt="CO2, kilde: NOAA (2021-b). Sixty Years of Global CO2 Levels, 1958 to 2018." />
+<figcaption aria-hidden="true">CO2, kilde: NOAA (2021-b). Sixty Years of
+Global CO2 Levels, 1958 to 2018.</figcaption>
+</figure>
+<p>FoldFunktionen som giver det glidende gennemsnit kan desineres som
+<span class="math display">$$
+g(t-x) = \left\{
+\begin{array}{ll}
+      \frac{1}{M} &amp;, \frac{1}{2}M&lt;x\leq \frac{1}{2}M \\
+        0 &amp;, ellers.
+\end{array}
+\right.
+$$</span> Foldningen bliver <span class="math display">$$
+(f*g)(t) = \int_{-\infty}^{\infty} f(x)g(x-t)dx  =
+\frac{1}{M}\int_{t-\frac{1}{2}M}^{t+\frac{1}{2}M} f(x)dx.
+$$</span></p>
+<h3 id="eksempel">Eksempel</h3>
+<p>Funktionen <span class="math inline">$f(x) = \cos(\frac{2\pi}{10}x) +
+\frac{1}{3}\cos(2\pi x)$</span> indeholder to cosinusfunktioner med en
+periode på <span class="math inline"><em>T</em> = 10</span> og <span
+class="math inline"><em>T</em> = 1</span> og en amplitude på <span
+class="math inline"><em>A</em> = 1</span> og <span
+class="math inline">$A=\frac{1}{3}$</span>. Den langsomme bevægelse kan
+findes ved et glidende gennemsnit, hvilket ses i figur 2 som den blå
+graf.</p>
+<figure>
+<img src="billeder/glidendeGennemsnit.png" alt="Gliden gennemsnit" />
+<figcaption aria-hidden="true">Gliden gennemsnit</figcaption>
+</figure>
+<p>Den blå graf kommer af et glidende gennemsnit med <span
+class="math inline"><em>M</em> = 2</span>. Integralet kan løses til,
+<span class="math display">$$
+h(t) = (f*g)(t)   = \frac{1}{2}\int_{t-1}^{t+1} \cos(\frac{2\pi}{10}x) +
+\frac{1}{3}\cos(2\pi x) dx = \frac{10 \cos
+\left(\frac{\pi  t}{10}\right) \sin \!
+\left(\frac{\pi}{10}\right)}{\pi}.
+$$</span></p>
+<h3 id="øvelse-3">Øvelse</h3>
+<ul>
+<li>Undersøg hvordan foldningen ændrer sig når man ændrer konstanten
+<span class="math inline"><em>M</em></span> ved at tegne grafen ved
+forskellige værdier eks med <span
+class="math inline"><em>M</em> = [0.01,0.1,1.0,4.0,8.0,16.0]</span>.</li>
+<li>Hvorfor bliver amplituden på den langsomme svingning mindre når
+<span class="math inline"><em>M</em></span> bliver større?</li>
+<li>Hvor lille kan <span class="math inline"><em>M</em></span> være før
+den hurtige svingning forsvinder?</li>
+</ul>
+<p>Elektronisk kan man fjerne højfrekvent støj med et såkaldt Low Pass
+filter, hvor de lave frekvenser kommer igenne.</p>
+<p>Hvis man vil have de hurtige svingninger, mens man fjerner den
+langsomme kan det gøres ved <span
+class="math inline"><em>f</em>(<em>t</em>) − <em>h</em>(<em>t</em>)</span>
+hvor man netop trækker den landsomme svingning fra.</p>
+<p>Hvis man har en højdemåler med ud og vandre bruger den trykforskellen
+når man bevæger sig op til at beregne højdeforskellen. Trykket skifter
+også i forhold til vejret med høj og lavtryk. Hvis denne ændring er
+langsom i forhold til hvor hurtigt man bevæger sig op vil det kunne
+udlignes ved at beregne <span
+class="math inline"><em>f</em>(<em>t</em>) − <em>h</em>(<em>t</em>)</span>.
+Hvis det gøres elektronisk kaldes det et High Pass Filter (HPF), fordi
+den højfrekvente information bliver bevaret.</p>
+<h3 id="øvelse-4">Øvelse</h3>
+<ul>
+<li>Plot <span
+class="math inline"><em>f</em>(<em>t</em>) − <em>h</em>(<em>t</em>)</span>
+og se om det passer med et HPF.</li>
+</ul>
+<h1 id="billedbehandling-og-gauss-funktionen.">Billedbehandling og
+gauss-funktionen.</h1>
+<p>Gauss-funktionen har mange anvendeliser, også til billedbehandling.
+Vi vil i dette se på to anvendelser, til at sløre et billeg og til at
+forstærke kontrasterne.</p>
+<p>Den generelle gauss-funktion er, <span class="math display">$$
+f(x) = \frac{1}{\sqrt{2\pi}\sigma}
+e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
+$$</span> , hvor spredningen <span class="math inline"><em>σ</em></span>
+giver bredden.</p>
+<figure>
+<img src="billeder/gauss1.png" alt="Gauss-funktioner" />
+<figcaption aria-hidden="true">Gauss-funktioner</figcaption>
+</figure>
+<p>Figur 3 viser tre gauss-funktioner centreret om <span
+class="math inline"><em>μ</em> = 0</span> med forekellig spredning. Alle
+tre funktioner har samme areal under kurven, <span
+class="math inline">1</span>. Ved sløring virker gauss-funktionerne som
+det glidende gennemsnit, men her er der mest vægt på den midsterste
+observation og mindre på de omkringliggende. Ved at gøre spredningen
+større bliver der taget et gennemsnit af flere pixels og billedet bliver
+mere sløret.</p>
+<p>Figur 4 viser et sort-hvidt billed og en repræsentation som en sinus
+funktion, hvor høj værdi giver hvis mens lav giver sort. Det er ikke
+helt korrekt at bruge en kontinuert funktion til at beskrive det
+sort-hvide billed, men det gør det matematisk lettere at arbejde
+med.</p>
+<figure>
+<img src="billeder/gauss2.png" alt="Sort hvid billede" />
+<figcaption aria-hidden="true">Sort hvid billede</figcaption>
+</figure>
+<h3 id="blure-filter">Blure filter</h3>
+<p>Vi laver en foldning mellem firkant-funktionen og gauss-funktionen,
+<span class="math display">$$
+f (x) =
+\left\{\begin{array}{cc}
+-1 &amp; x &lt;\pi  
+\\
+1 &amp; \pi \leq x &lt;2 \pi  
+\\
+...
+\end{array}\right.
+$$</span>, <span class="math display">$$
+(f*g)(t) =
+\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{\infty}f(x)e^{-\frac{1}{2}(\frac{t-x}{\sigma})^2}
+dx.
+$$</span> Dette integral løses med computer og giver den røde graf i
+figur 4.</p>
+<p>Gængse billedbehandlingsprogrammer eks. open source programmet Gimp
+kan foretage et gaussisk-blur. I figur 5 er grafen lavet med <span
+class="math inline"><em>σ</em> = 1</span> og blur-filtret er sat til 10
+pixels standardafvigelse. Det kan ikke direkte sammenlignes med
+standardafvigelsen og pixelantal da vi regner i andre enheder.</p>
+<figure>
+<img src="billeder/gauss5.png" alt="Sort hvid sløret" />
+<figcaption aria-hidden="true">Sort hvid sløret</figcaption>
+</figure>
+<p>Som det ses bliver firkant-funktionen blødere af den gaussiske
+foldning, hvilket netop giver de udviskede kanter på billedet.</p>
+<h3 id="øvelse-5">Øvelse</h3>
+<ul>
+<li>Lav en simpel firkant-funktion og prøv at lav en foldning med en
+gaussisk funktion.</li>
+<li>Undersøg hvordan man kan gøre den oprindelige funktion mere blød ved
+at ændre på standardafvigelsen.</li>
+<li>Prøv med et 2. grads polynomium i stedet for gauss-funktionen. Der
+er en online udgave af GIMP, <a
+href="https://fixthephoto.com/online-gimp-editor.html">https://fixthephoto.com/online-gimp-editor.html</a></li>
+<li>Afprøv gaussian blur filtret på et selvvalgt billed.</li>
+</ul>
+<p>Ved billedbehandling er det mere relevant at bruge funktioner af to
+variable, så man kan have pixels angevet som <span
+class="math inline">(<em>x</em>,<em>y</em>)</span>. Den tilhørende
+foldning bliver <span class="math display">$$
+(f*g)(t,s) = \frac{1}{2\pi \sigma_x
+\sigma_y}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)e^{-\frac{1}{2}(\frac{t-x}{\sigma_x})^2}e^{-\frac{1}{2}(\frac{s-y}{\sigma_y})^2}
+dxdy.
+$$</span> I praksis bruges den diskrete foldning som vil blive
+introduceret i næste afsnit, så vi vil ikke gøre mere ud af den
+kontinuerte her.</p>
+<h3 id="fourier-transformationen">Fourier transformationen</h3>
+<h1 id="diskret-foldning">Diskret foldning</h1>
+<p>Når man foretager målinger er data altid enkelte målepunkter. Hvis vi
+har en matematisk model kan vi, ved at bruge regression bestemme en
+kontinuert funktion som beskrive målepunkterne. I matematik arbejder vi
+ofte med disse kontinuerte funktioner og bestemmer egenskaber for dem.
+Der er mange situationer hvor det enten ikke er muligt eller nødvendigt
+at lave en sådan model.</p>
+<p>Vi skal i dette afsnit arbejde den diskrete foldning, hvor meget at
+matematikken svarer til det vi har gennemgået for kontinuerte funktioner
+ovenfor.</p>
+<h3 id="definiton---diskret-foldning">Definiton - diskret foldning</h3>
+<p>Den diskrete foldning af funktionerne <span
+class="math inline"><em>f</em>(<em>n</em>)</span> og <span
+class="math inline"><em>g</em>(<em>n</em>)</span> er givet ved <span
+class="math display">$$
+(f*g)[n] = \sum_{m=-\infty}^{\infty} f[m]g[n-m],
+$$</span> hvor <span class="math inline"><em>n</em></span> og <span
+class="math inline"><em>m</em></span> tilhører heltallene.</p>
+<p>Som ved integralet er det vigtigt at summen konvergere, hvorved vi
+har en konvervent række.</p>
+<p>Hvis <span class="math inline"><em>g</em>[<em>n</em>]</span> kun er
+forskellig fra nul for bestemte værdier <span
+class="math inline">{ − <em>M</em>,  − <em>M</em> + 1, .., <em>M</em> − 1, <em>M</em>}</span>
+kan foldningen skrives som <span class="math display">$$
+(f*g)[n] = \sum_{m=-M}^{M} f[m]g[n-m].
+$$</span> Et simpelt gennemsnit kan skrives som <span
+class="math display">$$
+\overline{f} = \frac{1}{M}\sum_0^{M} f = \frac{1}{M}(x_1+x_2+..+x_M),
+$$</span> hvilket er foldningen mellem <span
+class="math inline"><em>f</em> = [<em>x</em><sub>1</sub>,<em>x</em><sub>2</sub>,..,<em>x</em><sub><em>M</em></sub>]</span>
+og <span class="math inline"><em>g</em> = [1,1,..,1]</span>. Foldningen
+bliver <span class="math display">$$
+(f*g) = \frac{1}{M}\sum_0^{M} f\cdot g = \frac{1}{M}(x_1+x_2+..+x_M).
+$$</span> Figur 6 viser sinusfunktionen og et eksempel på 11 målinger,
+de røde.</p>
+<figure>
+<img src="billeder/sin_diskret.png" alt="Sinus" />
+<figcaption aria-hidden="true">Sinus</figcaption>
+</figure>
+<p>Vi kan nu opskrive de to datasæt, <span
+class="math inline"><em>f</em> = [0.,0.588,0.951,0.951,0.588,0.,−0.588,−0.951,−0.951,−0.588,0.]</span>
+og <span
+class="math inline"><em>g</em> = [1,1,1,1,1,1,1,1,1,1,1]</span>.</p>
+<h3 id="øvelse-6">Øvelse</h3>
+<ul>
+<li>Opskriv den diskrete foldning og udregn gennemsnittet.</li>
+</ul>
+<h3 id="glidende-gennemsnit">Glidende gennemsnit</h3>
+<p>Ved et glidende gennemsnit tages gennemsnittet at <span
+class="math inline"><em>M</em></span> punkter rundt om punktet <span
+class="math inline"><em>n</em></span>. For at det skal være symmetrisk
+omkring <span class="math inline"><em>n</em></span> skal <span
+class="math inline"><em>M</em></span> være et ulige heltal. Det giver
+<span class="math display">$$
+\overline{f}[n] =
+\frac{1}{M}\sum_{m=n-\frac{1}{2}(M-1)}^{m=n+\frac{1}{2}(M-1)} f[m].
+$$</span></p>
+<h3 id="øvelse-7">Øvelse</h3>
+<ul>
+<li>Overvej hvorfor <span class="math inline"><em>M</em></span> skal
+være ulige.</li>
+<li>Argumenter for at det skal være <span
+class="math inline"><em>M</em> − 1</span> ved at kigge på eksemplet hvor
+<span class="math inline"><em>M</em> = 3</span>.</li>
+</ul>
+<p>Ved denne version af et glidende gennemsnit reduceres antallet af
+datapunkter med <span class="math inline"><em>M</em></span>.</p>
+<p>Nedenfor ses sammen sinuskurve med et glidende gennemsnit hvor <span
+class="math inline"><em>M</em> = 3</span></p>
+<figure>
+<img src="billeder/sin_diskret_moving_average.png"
+alt="Diskret glidenden gennemsnit" />
+<figcaption aria-hidden="true">Diskret glidenden gennemsnit</figcaption>
+</figure>
+<h2 id="øvelse-8">Øvelse</h2>
+<p>Her er 101 datapunkter. Y = [0.58, 0.49, 0.45, 0.58, 0.38, 0.92,
+0.45, 0.99, 0.68, 0.90, 1.00, 0.64, 1.00, 0.96, 1.00, 0.93, 0.96, 0.95,
+0.99, 1.00, 0.99, 0.99, 0.70, 0.98, 0.93, 0.93, 0.55, 0.84, 0.56, 0.92,
+0.48, 0.92, 0.13, 0.23, 0.33, 0.79, 0.65, -0.08, 0.26, 0.57, -0.17,
+0.04, 0.11, -0.17, -0.19, 0.03, -0.51, 0.17, -0.54, -0.72, -0.29, -0.77,
+-0.26, -0.19, -0.89, -0.31, -0.96, -0.55, -0.96, -0.58, -0.81, -0.80,
+-0.92, -0.81, -0.95, -1.00, -0.99, -0.99, -0.98, -1.00, -1.00, -0.98,
+-0.99, -0.99, -0.77, -0.83, -0.93, -0.77, -0.48, -0.71, -0.93, -0.40,
+-0.46, -0.38, -0.25, -0.68, -0.02, -0.18, -0.10, -0.23, 0.07, -0.29,
+-0.13, 0.18, -0.24, 0.57, 0.25, 0.42, 0.64, 0.68, 0.62]</p>
+<p>X = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53,
+54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71,
+72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89,
+90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]</p>
+<ul>
+<li>Lav et punktplot af datasættet. De fleste matematikprogrammer kan
+lave glidende gennemsnit, moving average på engelsk. I maple skal man
+brug <em>with(Statistics)</em> og <em>MovingAverage(Y, M)</em> for at
+beregne det glidende gennemsnit.</li>
+<li>Lav et glidende gennemsnit over data hvor I ændrer <span
+class="math inline"><em>M</em></span> så I får fjernet støjen.</li>
+<li>Lav et punktplot at det glidende gennemsnit.</li>
+<li>Lav en liste med <span
+class="math inline"><em>g</em> = [1,1,1,1,1] ⋅ 1/5</span> og lav
+foldningen med <span class="math inline"><em>Y</em></span>, det skulle
+gerne give det samme som det glidende gennemsnit.</li>
+</ul>
+<h2 id="diskret-foldning-og-billedbehandling">Diskret foldning og
+billedbehandling</h2>
+<p>Billedet, vi lavede en gauss-foldning på, figur 4 kan også skrives
+som diskrete værdier hvor <span
+class="math inline"><em>g</em> = [−1,1,−1,1,−1,...]</span>, hvor <span
+class="math inline"> − 1</span> svarer til sort og <span
+class="math inline">1</span> hvid og <span
+class="math inline"><em>g</em></span> er <span
+class="math inline"><em>N</em></span> lang.</p>
+<figure>
+<img src="billeder/gauss2.png" alt="Sort hvid" />
+<figcaption aria-hidden="true">Sort hvid</figcaption>
+</figure>
+<p>Hvis vi gerne vil gøre billedet mere sløret kan vi eks. lave en
+foldning med <span
+class="math inline"><em>f</em> = [0.1,0.8,0.1]</span>, hvor vi lader
+hver pixel være et vægtet gennemsnit af sig selv og naboernes
+værdier.</p>
+<p>Foldningen bliver <span class="math display">$$
+(f*g)[n] = \sum_{m=1}^{m=3}f[m]g[n-m]
+$$</span> skrevet ud bliver det. <span
+class="math display">(<em>f</em>*<em>g</em>)[2] = 0.1 ⋅ (−1) + 0.8 ⋅ 1 + 0.1 ⋅ (−1) = 0.6</span></p>
+<p><span
+class="math display">(<em>f</em>*<em>g</em>)[3] = 0.1 ⋅ 1 + 0.8 ⋅ (−1) + 0.1 ⋅ 1 =  − 0.6</span></p>
+<p><span
+class="math display">(<em>f</em>*<em>g</em>)[4] = 0.1 ⋅ (−1) + 0.8 ⋅ 1 + 0.1 ⋅ (−1) = 0.6</span></p>
+<p>Vores output at foldningen bliver listen, <span
+class="math inline"><em>G</em> = [0.6,−0.6,0.6,−0.6,...]</span>. I
+forhold til <span
+class="math inline"><em>g</em> = [−1,1,−1,1,...]</span> er kontrasten
+mindre.</p>
+<h3 id="øvelse-9">Øvelse</h3>
+<ul>
+<li>Vælg en anden vægtfordeling og lav en foldning med
+firkant-funktionen.</li>
+<li>Overvej hvad der sker hvis summen af vægtene ikke er 1.</li>
+</ul>
+<h3 id="gauss-foldning">Gauss foldning</h3>
+<p>Som vist ovenfor er gauss-fordelingen brugbar når billeder skal
+sløres.</p>
+<figure>
+<img src="billeder/normal_diskret.png" alt="normal_diskret" />
+<figcaption aria-hidden="true">normal_diskret</figcaption>
+</figure>
+<p>Figuren viser den kontinuerte gauss-fordeling med middelværdi <span
+class="math inline"><em>μ</em> = 0</span> og spredning <span
+class="math inline"><em>σ</em> = 1</span>. De røde punkter giver
+værdierne til en diskret foldning, <span
+class="math inline"><em>f</em> = [0.000,0.004,0.054,0.242,0.399,0.242,0.054,0.004,0.000]</span>.
+Med tre decimaler afrundes fire gange spredning til nul og
+pixelværdierne vil være et vægtet gennemsnit af de 7 omkringliggende
+pixels.</p>
+<h3 id="d">2D</h3>
+<h3 id="øvelse-10">Øvelse</h3>
+<p>Billeder kan beskrives med <span
+class="math inline"><em>x</em></span> og <span
+class="math inline"><em>y</em></span> koordinater og her definerer man
+en <span class="math inline"><em>N</em><em>x</em><em>M</em></span>
+foldningsmatrice. Hvis foldningsmatricen igen er begrænset bliver det,
+<span class="math display">$$
+(f*g)[x,y] =
+\sum_{i=-[N/2]}^{[N/2]}\sum_{i=-[M/2]}^{[M/2]}f(x-i,y-j)\cdot g(i,j)
+$$</span> Figuren viser en animation af processen, kan findes her, <a
+href="https://upload.wikimedia.org/wikipedia/commons/1/19/2D_Convolution_Animation.gif">wikipedia
+convolution</a>. Her er vægtmatrricen <span class="math display">$$
+w = \left[\begin{array}{ccc}
+0 &amp; -1 &amp; 0
+\\
+-1 &amp; 5 &amp; -1
+\\
+0 &amp; -1 &amp; 0
+\end{array}\right]
+$$</span></p>
+<figure>
+<img src="billeder/2D_Convolution_Animation.gif" alt="2d_foldning" />
+<figcaption aria-hidden="true">2d_foldning</figcaption>
+</figure>
+<p>Vist som billede med høj værdi lys og lav mørk bliver det til figur
+xx. Billedet er blevet skarpere i den forstand at mørke regioner er
+blevet mørkere mens lyse er blevet lysere.</p>
+<figure>
+<img src="billeder/2dfoldning_sharp.png" alt="2dfolening_sharp" />
+<figcaption aria-hidden="true">2dfolening_sharp</figcaption>
+</figure>
+<p>På animationen kan man se at de yderste pixel-værdier bliver beregnet
+ved at kopiere kendte værdier ind der hvor der mangler i foldningen. Der
+er mange metoder til at behandle siderne og hjørnerne, men for normale
+billeder hvor der er mange pixels er det simpleste at smide de yderste
+væk.</p>
+<p>I figur xx ses et skakternet mønster som er foldet med samme
+vægt-matrice. Her er det tydeligt at foldningen før billedet skarpere.
+Vægtmatricen er den samme og billedet er lavet ud fra matriccen,</p>
+<p><span class="math display">$$
+f = \left[\begin{array}{ccccccc}
+1 &amp; 2 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 1
+\\
+2 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 1 &amp; 2
+\\
+1 &amp; 2 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 1
+\\
+2 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 1 &amp; 2
+\\
+1 &amp; 2 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 1
+\\
+2 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 1 &amp; 2
+\\
+1 &amp; 2 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 1
+\end{array}\right]
+$$</span></p>
+<figure>
+<img src="billeder/2dfoldning_sharp_skak.png"
+alt="Foldning af skaktern" />
+<figcaption aria-hidden="true">Foldning af skaktern</figcaption>
+</figure>
+<h3 id="øvelser">Øvelser</h3>
+<ul>
+<li>Udfør beregningen af pixelværdierne de fire midterste pixels.</li>
+<li>Overvej hvad der vil ske hvis vægtmatricen ikke summere til 1.</li>
+</ul>
+<p>Her er et eksempel med lidt flere pixels</p>
+<figure>
+<img src="billeder/2dfoldning_sharp_skak_17x17.png"
+alt="Foldning af 17x17 skaktern" />
+<figcaption aria-hidden="true">Foldning af 17x17 skaktern</figcaption>
+</figure>
