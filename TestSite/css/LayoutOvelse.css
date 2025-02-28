@@ -38,6 +38,10 @@ span {
     --CSSrgb: #9873a2;
     --CSSrgbPara: #da70d6;
     --CSShex: #8080ff;
+    --jsVar: #ec8d2c;
+    --jsName: #d1a8ff;
+    --jsPara: #78bffe;
+    --jsVarName: #c8d1d9;
 }
 
 .HTML {
@@ -70,6 +74,22 @@ span {
 
 .CSShex {
     color: var(--CSShex);
+}
+
+.jsVar {
+    color: var(--jsVar);
+}
+
+.jsName {
+    color: var(--jsName);
+}
+
+.jsVarName {
+    color: var(--jsVarName);
+}
+
+.jsPara {
+    color: var(--jsPara);
 }
 
 .codeSpanForklar {
