@@ -7,8 +7,8 @@ imageTestLille = 'Billleder/20241119-_RVB1178 – lille.jpeg'
 #imageTestMellem = '20241119-_RVB1178 – mellem.jpeg'
 #imageTestStor = '20241119-_RVB1178 – stor.jpeg'
 
-img = Image.open(image1)
-im = cv2.imread(image1)
+img = Image.open(imageTestLille)
+im = cv2.imread(imageTestLille)
 img.show()
 pixel_map = img.load()
 
@@ -26,14 +26,7 @@ convolutionMatrix = np.array([
     [2, 4, 8, 4, 2],
     [1, 2, 4, 2, 1]
 ])
-# Edge detection
-#convolutionMatrix = np.array([
-#    [-1, -1, 0, 1, 1],
-#    [-1, -1, 0, 1, 1],
-#    [-1, -1, 0, 1, 1],
-#    [-1, -1, 0, 1, 1],
-#    [-1, -1, 0, 1, 1]
-#])
+
 
 # Loop through the image with adjusted ranges to avoid out-of-bounds errors
 for x in range(im.shape[1]):
@@ -70,12 +63,6 @@ for x in range(im.shape[1]):
             int(sum(bTotal) / sum(convolutionMatrix.flatten()))
             )
         except ZeroDivisionError:
-            pixel_map[x, y] = (
-                int(sum(rTotal)),
-                int(sum(gTotal)),
-                int(sum(bTotal))
-            )
-        else:
             pixel_map[x, y] = (
                 int(sum(rTotal)),
                 int(sum(gTotal)),
