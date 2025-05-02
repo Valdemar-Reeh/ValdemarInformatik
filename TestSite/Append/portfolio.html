@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mit Portfolio</title>
+  <link rel="stylesheet" href="stylesPortfolio.css" />
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Portfolio - Valdemar Reeh</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/cameraICON.jpeg" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Reeh Billeder</h1><span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero" class="active">Home</a></li>
+          <li><a href="index.html#about">Portfolioer</a></li>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Fulde Portfolio</a>
+
+    </div>
+  </header>
+
+  <main class="mt-5 pt-5">
+    <div class="grid">
+      <img src="assets/img/billederPortfolio/20240930-IMG_7713.jpg" alt="Photo 1"/>
+      <img src="assets/img/billederPortfolio/RVB2509.jpg" alt="Photo 2"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/20241015-MME00183.jpg" alt="Photo 3" class="vertical"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/RVB13562.jpg" alt="Photo 11"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/ImgDemo1.jpg" alt="Photo 7"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/ImgDemo2.jpg" alt="Photo 8"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/IMG13.jpg" alt="Photo 5"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/IMG10.jpg" alt="Photo 4"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/Johan.jpg" alt="Photo 9" class="vertical"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/20241006-DSC_0494.jpg" alt="Photo 10"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/IMG14.jpg" alt="Photo 6"/>
+      <img src="assets/img/billederPortfolio/index_portfolio//20241007-_DSC0810.jpg" alt="Photo 13"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/RVB13902.jpg" alt="Photo 12"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/20241014-MME00125.jpg" alt="Photo 15"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/20241013-MME09706.jpg" alt="Photo 14"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/20241015-MME00273.jpg" alt="Photo 16"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/Arthur.jpg" alt="Photo 17" class="vertical"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/20241015-MME00275.jpg" alt="Photo 18"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/20241224-_RVB1918.jpg" alt="Photo 19"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/20241224-_RVB1939.jpg" alt="Photo 20"/>
+      <img src="assets/img/billederPortfolio/index_portfolio/20241224-_RVB1987.jpg" alt="Photo 21"/>
+    </div>
+  </main>
+    <!-- Add inside <body> (after the grid) -->
+    <div class="lightbox" id="lightbox">
+      <img id="lightbox-img" src="" alt="Fullscreen" />
+    </div>    
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const images = document.querySelectorAll(".grid img");
+
+        // Add click event to each image
+        images.forEach((img) => {
+          img.addEventListener("click", () => {
+            console.log("Image clicked:", img.src); // Log the clicked image source 
+            lightbox.style.display = "flex"; // Show the lightbox
+            lightboxImg.src = img.src; // Set the clicked image as the lightbox image
+          });
+        });
+
+        // Hide the lightbox when clicked
+        lightbox.addEventListener("click", () => {
+          lightbox.style.display = "none"; // Hide the lightbox
+        });
+      });
+    </script>
+</body>
+</html>

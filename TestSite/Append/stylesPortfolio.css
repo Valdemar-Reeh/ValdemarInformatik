@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 200px; /* Default row height */
+  gap: 10px;
+  padding: 2rem;
+}
+
+.grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills its grid cell without distortion */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.grid img:hover {
+  transform: scale(1.03);
+}
+
+/* Vertical images span two rows */
+.grid img.vertical {
+  grid-row: span 2; /* Makes the image span two rows */
+}
+
+/* Lightbox styles */
+.lightbox {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.lightbox img {
+  max-width: 90%; /* Ensure the image doesn't exceed the viewport width */
+  max-height: 90%; /* Ensure the image doesn't exceed the viewport height */
+  object-fit: contain; /* Ensures the image fits within the lightbox without distortion */
+  border: 2px solid white;
+  border-radius: 10px;
+}

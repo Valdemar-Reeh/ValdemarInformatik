@@ -2,72 +2,62 @@ import numpy as np
 from PIL import Image
 import cv2
 
-image1 = 'Billleder/image2.jpeg'
 imageTestLille = 'Billleder/20241119-_RVB1178 – lille.jpeg'
-#imageTestMellem = '20241119-_RVB1178 – mellem.jpeg'
-#imageTestStor = '20241119-_RVB1178 – stor.jpeg'
+#imageTestMellem = 'Billleder/20241119-_RVB1178 – mellem.jpeg'
+#imageTestStor = 'Billleder/20241119-_RVB1178 – stor.jpeg'
+imageTestLille ='Billleder/ForsideSRP.jpeg'
 
 img = Image.open(imageTestLille)
 im = cv2.imread(imageTestLille)
-img.show()
 pixel_map = img.load()
 
-# Ensure the image is loaded correctly
+# Sørger for at billedet er loaded korrekt
 if img is None or im is None:
     raise ValueError("Image not loaded correctly")
 
-# Define a 5x5 convolution matrix
-# The sum of all elements in the matrix must not be 0
-# Gaussian blur
+# Definerer en 7x7 blur konvolutionsmatrix
 convolutionMatrix = np.array([
-    [1, 2, 4, 2, 1],
-    [2, 4, 8, 4, 2],
-    [4, 8, 16, 8, 4],
-    [2, 4, 8, 4, 2],
-    [1, 2, 4, 2, 1]
+    [0.000,0.000,0.000,0.000,0.000,0.000,0.000],
+    [0.000,0.000,0.001,0.002,0.001,0.000,0.000],
+    [0.000,0.003,0.013,0.022,0.013,0.003,0.000],
+    [0.001,0.013,0.059,0.097,0.059,0.013,0.001],
+    [0.002,0.022,0.097,0.159,0.097,0.022,0.002],
+    [0.001,0.013,0.059,0.097,0.059,0.013,0.001],
+    [0.000,0.003,0.013,0.022,0.013,0.003,0.000],
+    [0.000,0.000,0.001,0.002,0.001,0.000,0.000],
+    [0.000,0.000,0.000,0.000,0.000,0.000,0.000],
 ])
 
+# Laver et nyt billede til at gemme resultatet
+result_img = Image.new("RGB", img.size)
+result_pixel_map = result_img.load()
 
-# Loop through the image with adjusted ranges to avoid out-of-bounds errors
-for x in range(im.shape[1]):
-    for y in range(im.shape[0]):
-        cords = (x, y)   
-        pixel = img.getpixel(cords)
-        rTotal =[]; gTotal = []; bTotal = []
-        for i in range(0,5):
-            for j in range(0,5):
-                loopCordsx = ((x - 2) + i)
-                loopCordsy = ((y - 2) + j)
-                if loopCordsx < 0:
-                    rTotal.append(0)
-                    gTotal.append(0)
-                    bTotal.append(0)
-                    continue
-                if loopCordsy < 0:
-                    rTotal.append(0)
-                    gTotal.append(0)
-                    bTotal.append(0)
-                    continue
-                if loopCordsx >= img.width:
-                    loopCordsx = img.width - 1
-                if loopCordsy >= img.height:
-                    loopCordsy = img.height - 1
+# Loop gennem billedet med justerede intervaller for at undgå out-of-bounds fejl
+for x in range(1, img.width - 3):
+    if x == (1/3 * img.width - 3):
+        print("1/3 done")
+    if x == (2/3 * img.width - 3):
+        print("2/3 done");
+    for y in range(1, img.height - 3):
+        rTotal = 0
+        gTotal = 0
+        bTotal = 0
+        for i in range(7):
+            for j in range(7):
+                loopCordsx = x + i - 5
+                loopCordsy = y + j - 5
                 r, g, b = img.getpixel((loopCordsx, loopCordsy))
-                rTotal.append(r * convolutionMatrix[i][j])
-                gTotal.append(g * convolutionMatrix[i][j])
-                bTotal.append(b * convolutionMatrix[i][j])
-        try:
-            pixel_map[x, y] = (
-            int(sum(rTotal) / sum(convolutionMatrix.flatten())), 
-            int(sum(gTotal) / sum(convolutionMatrix.flatten())), 
-            int(sum(bTotal) / sum(convolutionMatrix.flatten()))
-            )
-        except ZeroDivisionError:
-            pixel_map[x, y] = (
-                int(sum(rTotal)),
-                int(sum(gTotal)),
-                int(sum(bTotal))
-            )
-img.show()
+                rTotal += r * convolutionMatrix[i][j]
+                gTotal += g * convolutionMatrix[i][j]
+                bTotal += b * convolutionMatrix[i][j]
+        
+        # Holder værdierne mellem 0 og 255
+        rTotal = max(0, min(255, rTotal))
+        gTotal = max(0, min(255, gTotal))
+        bTotal = max(0, min(255, bTotal))
+        
+        result_pixel_map[x, y] = (int(rTotal), int(gTotal), int(bTotal))
 
+# Viser resultatbilledet
+result_img.show()
 
