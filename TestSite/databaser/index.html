@@ -79,6 +79,9 @@
 function vissang(){
   document.getElementById("userInput").value = "";
   x++;
+  if (x >= data.length) {
+    x = 0;
+  }
   console.log(x);
   var song = data[x].SONG + "," + " " + data[x].NAME;
   console.log(song);
