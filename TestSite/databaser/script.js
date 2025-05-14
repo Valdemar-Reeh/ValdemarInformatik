@@ -1,9 +1,14 @@
 
 function vissang(){
-  x = Math.floor(Math.random()*19+1);
-  console.log(x);
+  x = Math.floor(Math.random()*3);
+  console.log(x );
   var song = data[x];
+  
+  console.log(data[x]);
   document.getElementById('songs').innerHTML = song;
+
+  const iframe = document.getElementById('myIframe');
+  iframe.src = data[x].SRC;
 }
 
 
